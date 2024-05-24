@@ -80,7 +80,12 @@ exports.getuserdata = async (req, res) => {
 
 exports.logout = async (req, res) => {
   const email = req.user.email;
-  const token = req.headers["authorization"].split(" ")[1];
+  // const token = req.headers["authorization"].split(" ")[1];
+  let token; // Get the token part after 'Bearer '
+  let spl = req.headers["authorization"].split(" ");
+  if (spl.length >= 2) token = spl[1]; // Get the token part after 'Bearer '
+  else token = spl[0];
   expiredtoken.push(token);
+  console.log(expiredtoken);
   res.send("you are logout successfully");
 };
