@@ -13,3 +13,4 @@ app.use(router);
 app.listen(3000, () => {
   console.log("server started");
 });
+exports.app = app;

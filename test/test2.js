@@ -3,19 +3,20 @@ import("chai").then((chai) => {
   const { app } = require("../app"); // Ensure you export `app` from your main app file
   const { UserModel } = require("../model/components.model");
   const { expiredtoken } = require("../modules");
-
+  console.log("ssssssssssssssssssssssssssssss");
   chai.use(chaiHttp);
   const { expect } = chai;
   describe("API Routes", () => {
     // Before each test, clear the database and expiredtoken array
     beforeEach(async () => {
-      console.log("sssssssssssssssss");
+      console.log("ssssrrrrrrrrrrrrrr");
       await UserModel.deleteMany({});
       expiredtoken.length = 0;
     });
 
     describe("POST /register", () => {
       it("should register a new user", (done) => {
+        console.log("///register");
         chai
           .request(app)
           .post("/register")
