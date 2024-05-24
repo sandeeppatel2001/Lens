@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r dotenv/config test/test.mjs"
+    "test": "mocha -r dotenv/config test/test.mjs",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",

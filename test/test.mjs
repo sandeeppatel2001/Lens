@@ -3,34 +3,54 @@ import { expect, use } from "chai";
 import chaiHttp from "chai-http";
 const chai = use(chaiHttp);
 chai.request().post;
-
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjUwMmU2ZDI4OGNhOWQxMTk3ZDQ1YWMiLCJlbWFpbCI6InNhbmRlZXBAZ21haWwuY29tIiwiaWF0IjoxNzE2NTUwMTk0LCJleHAiOjE3MTY1NTM3OTR9.retkVxZdd-hveR-CNVdx40k2-_-upEzB1C-eX5kpoNo";
 describe("API Routes", function () {
-  describe("POST /register", function () {
-    it("should register a new user", function (done) {
+  //--------- PLEASE UPDATE THE EMAIL FOR NEW USER THEN TRY FOR RESISTER
+  // describe("POST /register", function () {
+  //   it("should register a new user", function (done) {
+  //     chai
+  //       .request("http://localhost:3000")
+  //       .post("/register")
+  //       .send({
+  //         firstname: "Sandeep23",
+  //         lastname: "Patel",
+  //         email: "sandeep23.patel@example.com",
+  //         password: "password123",
+  //         pincode: 12345678,
+  //         addr: "Varanasi",
+  //       })
+  //       .end(function (err, res) {
+
+  //         expect(res).to.have.status(201);
+  //         expect(res.text).to.equal("User registered successfully");
+  //         done();
+  //       });
+  //   });
+  // });
+
+  describe("POST /login", function () {
+    it("should login with valid credentials", function (done) {
       chai
         .request("http://localhost:3000")
-        .post("/register")
+        .post("/login")
         .send({
-          firstname: "Sandeep2",
-          lastname: "Patel",
-          email: "sandeep2.patel@example.com",
+          email: "sandeep.patel@example.com",
           password: "password123",
-          pincode: 12345678,
-          addr: "Varanasi",
         })
         .end(function (err, res) {
-          expect(res).to.have.status(201);
-          expect(res.text).to.equal("User registered successfully");
+          token = res.body.token;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.property("token");
           done();
         });
     });
   });
-
   describe("GET /profile", function () {
     it("should get user data with valid token", function (done) {
       // Assuming you have a valid token
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjUwMmU2ZDI4OGNhOWQxMTk3ZDQ1YWMiLCJlbWFpbCI6InNhbmRlZXBAZ21haWwuY29tIiwiaWF0IjoxNzE2NTM1MjU0LCJleHAiOjE3MTY1Mzg4NTR9.AeGy3T4VU0DqIH91BmoKeYhqpvixyvjqeWA_OJQDheg";
+      // const token =
+      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjUwMmU2ZDI4OGNhOWQxMTk3ZDQ1YWMiLCJlbWFpbCI6InNhbmRlZXBAZ21haWwuY29tIiwiaWF0IjoxNzE2NTM1MjU0LCJleHAiOjE3MTY1Mzg4NTR9.AeGy3T4VU0DqIH91BmoKeYhqpvixyvjqeWA_OJQDheg";
 
       chai
         .request("http://localhost:3000")
@@ -44,28 +64,11 @@ describe("API Routes", function () {
     });
   });
 
-  describe("POST /login", function () {
-    it("should login with valid credentials", function (done) {
-      chai
-        .request("http://localhost:3000")
-        .post("/login")
-        .send({
-          email: "sandeep.patel@example.com",
-          password: "password123",
-        })
-        .end(function (err, res) {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property("token");
-          done();
-        });
-    });
-  });
-
   describe("GET /logout", function () {
     it("should logout with valid token", function (done) {
       // Assuming you have a valid token
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjUwMmU2ZDI4OGNhOWQxMTk3ZDQ1YWMiLCJlbWFpbCI6InNhbmRlZXBAZ21haWwuY29tIiwiaWF0IjoxNzE2NTM1MjU0LCJleHAiOjE3MTY1Mzg4NTR9.AeGy3T4VU0DqIH91BmoKeYhqpvixyvjqeWA_OJQDheg";
+      // const token =
+      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjUwMmU2ZDI4OGNhOWQxMTk3ZDQ1YWMiLCJlbWFpbCI6InNhbmRlZXBAZ21haWwuY29tIiwiaWF0IjoxNzE2NTM1MjU0LCJleHAiOjE3MTY1Mzg4NTR9.AeGy3T4VU0DqIH91BmoKeYhqpvixyvjqeWA_OJQDheg";
 
       chai
         .request("http://localhost:3000")
