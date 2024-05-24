@@ -5,7 +5,7 @@ module.exports.resister = object({
     lastname: string({ required_error: "Component lastname is required" }),
     email: string({ required_error: "Email is required" }),
     password: string({ required_error: "password is required" }),
-    pincode: string({ required_error: "pincode is required" }),
+    pincode: number({ required_error: "pincode is required" }),
     addr: string({ required_error: "Addr is required" }),
   }),
 });

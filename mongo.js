@@ -1,8 +1,11 @@
 exports.db = async () => {
+  require("dotenv").config();
   const mongoose = require("mongoose");
   try {
-    const res = await mongoose.connect(process.env.URL);
-    console.log("connection done ");
+    // console.log("envvvvvvvv", process.env.URL);
+    const res = await mongoose.connect(process.env.URL).then(() => {
+      console.log("DB connection done");
+    });
   } catch (error) {
     console.log(error);
   }

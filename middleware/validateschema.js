@@ -11,6 +11,7 @@ module.exports.validateschema = (schema) => (req, res, next) => {
     next();
   } catch (error) {
     const errors = [];
+    console.log(error);
     for (const e of error.errors) {
       errors.push(e.message);
     }
