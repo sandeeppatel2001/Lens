@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
 };
 exports.register = async (req, res) => {
   //   console.log("req.body=", req.body);
-  const { firstname, lastname, email, password, pincode } = req.body;
+  const { firstname, lastname, email, password, pincode, addr } = req.body;
   try {
     const newUser = new UserModel({
       firstname,
@@ -44,6 +44,7 @@ exports.register = async (req, res) => {
       email,
       password,
       pincode,
+      addr,
     });
     const r = await newUser.save();
 
